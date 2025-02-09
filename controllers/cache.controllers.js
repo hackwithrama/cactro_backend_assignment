@@ -28,3 +28,39 @@ export const createData = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const getById = async (req, res) => {
+  try {
+    const cacheEntry = await Cache.findOne({ key: req.params.key });
+    if (!cacheEntry) {
+      return res.status(404).json({
+        success: false,
+        message: "Key not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: cacheEntry,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteById = async (req, res) => {
+  try {
+    const cacheEntry = await Cache.findOneAndDelete({ key: req.params.key });
+    if (!cacheEntry) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Key not found in cache." });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Key-value pair removed from cache." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

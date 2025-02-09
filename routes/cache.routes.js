@@ -1,12 +1,16 @@
 import { Router } from "express";
-import { createData } from "../controllers/cache.controllers.js";
+import {
+  createData,
+  deleteById,
+  getById,
+} from "../controllers/cache.controllers.js";
 
 const cacheRouter = Router();
 
 cacheRouter.post("/", createData);
 
-cacheRouter.get("/:key");
+cacheRouter.get("/:key", getById);
 
-cacheRouter.delete("/:key");
+cacheRouter.delete("/:key", deleteById);
 
 export default cacheRouter;
