@@ -16,10 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1/cache", cacheRouter);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to cactro");
-});
-
 app.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT}`);
   await connectToDatabase();
