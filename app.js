@@ -13,10 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/cache", cacheRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello cactro backend test");
-});
-
 app.listen(3000, async () => {
   console.log(`Server listening on port 3000`);
   await connectToDatabase();
