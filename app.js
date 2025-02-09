@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api/v1/cache", cacheRouter);
+app.use("/cache", cacheRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello cactro backend test");
