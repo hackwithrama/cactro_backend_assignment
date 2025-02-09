@@ -3,9 +3,6 @@ import express from "express";
 // import db connection
 import connectToDatabase from "./database/mongodb.js";
 
-// environment
-import { PORT } from "./config/env.js";
-
 // routes
 import cacheRouter from "./routes/cache.routes.js";
 
@@ -16,7 +13,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1/cache", cacheRouter);
 
-app.listen(PORT, async () => {
-  console.log(`Server listening on port ${PORT}`);
+app.get("/", (req, res) => {
+  res.send("Hello cactro backend test");
+});
+
+app.listen(3000, async () => {
+  console.log(`Server listening on port 3000`);
   await connectToDatabase();
 });
